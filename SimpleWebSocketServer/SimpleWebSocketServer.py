@@ -597,6 +597,7 @@ class SimpleWebSocketServer(object):
          self._handleClose(conn)
 
    def _handleClose(self, client):
+      client.client.shutdown(socket.SHUT_RDWR)
       client.client.close()
       # only call handleClose when we have a successful websocket connection
       if client.handshaked:
